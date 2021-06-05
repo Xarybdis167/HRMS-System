@@ -1,6 +1,9 @@
 package Java.dev.HRMS.dataAccess.abstracts;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface StaffDao {
+import Java.dev.HRMS.entities.concretes.Staff;
+
+public interface StaffDao extends JpaRepository<Staff,Integer>{
 
 }

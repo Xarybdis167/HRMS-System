@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Java.dev.HRMS.business.abstracts.ProfessionService;
+import Java.dev.HRMS.core.utilities.results.DataResult;
+import Java.dev.HRMS.core.utilities.results.Result;
+import Java.dev.HRMS.core.utilities.results.SuccessDataResult;
+import Java.dev.HRMS.core.utilities.results.SuccessResult;
 import Java.dev.HRMS.dataAccess.abstracts.ProfessionDao;
 import Java.dev.HRMS.entities.concretes.Profession;
 
@@ -20,9 +24,16 @@ public class ProfessionManager implements ProfessionService{
 	}
 
 	@Override
-	public List<Profession> getAll() {
+	public DataResult<List<Profession>> getAll() {
 		
-		return professionDao.findAll();
+		return new SuccessDataResult<List<Profession>>(this.professionDao.findAll(),"Data Listed");
 	}
+
+	@Override
+	public Result add(Profession profession) {
+		this.professionDao.save(profession);
+		return new SuccessResult("Proffesion added");
+	}
+
 
 }

@@ -9,35 +9,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import Java.dev.HRMS.business.abstracts.ProfessionService;
+import Java.dev.HRMS.business.abstracts.EmployerService;
 import Java.dev.HRMS.core.utilities.results.DataResult;
 import Java.dev.HRMS.core.utilities.results.Result;
-import Java.dev.HRMS.entities.concretes.Profession;
-
-
+import Java.dev.HRMS.entities.concretes.Employer;
 @RestController
-@RequestMapping("/api/professions")
+@RequestMapping("/api/employers")
+public class EmployersController {
 
-public class ProfessionsController {
-	
-	private ProfessionService professionService;
-	
+	private EmployerService employerService;
 	@Autowired
-	public ProfessionsController(ProfessionService professionService) {
+	public EmployersController(EmployerService employerService) {
 		super();
-		this.professionService = professionService;
-		
+		this.employerService = employerService;
 	}
 	@GetMapping("/getall")
-	public DataResult<List<Profession>> getAll() {
-		return this.professionService.getAll();
-		
+	public DataResult<List<Employer>> getAll(){
+		return this.employerService.getAll();
 	}
 	@PostMapping("/add")
-	public Result add(@RequestBody Profession profession) {
-		return this.professionService.add(profession);
+	public Result add(@RequestBody Employer employer, String password) {
+		return this.employerService.add(employer,password);
 	}
-	
-	
 	
 }
