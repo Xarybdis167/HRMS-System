@@ -38,7 +38,7 @@ public class EmailVerificationManager implements EmailVerificationService{
 
 	@Override
 	public Result isVerificated(String email) {
-		if(emailVerificationDao.findByEmail(email) == null) {
+		if(emailVerificationDao.findByEmailAndIsVerificated(email, true) == null) {
 			return new ErrorResult("Email Verification required");
 		}
 		return new SuccessResult();
