@@ -6,8 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,40 +15,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-
 @Data
-@EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="employees")
-@PrimaryKeyJoinColumn(name="user_id")
+@Table(name="languages")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobAdvertisements"})
-public class Employee extends User{
-	@JsonIgnore
+public class Language {
+
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="employees_id",insertable = false,updatable = false)
-	private int employeeId;
+	@Column(name="language_id")
+	private int languageId;
 	
-	@Column(name="first_name")
-	private String firstName;
+	@Column(name="language")
+	private String language;
 	
-	@Column(name="last_name")
-	private String lastName;
-	
-	@Column(name="national_identity")
-	private String nationalIdentity;
-	
-	@Column(name="birth_year")
-	private int birthYear;
+	@Column(name="language_level")
+	private String languageLevel;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy ="employee")
+	@OneToMany(mappedBy="language")
 	private List<CV> cv;
-	
-	
 	
 }

@@ -3,6 +3,7 @@ package Java.dev.HRMS.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,7 +44,7 @@ public class JobAdvertisementController {
 		return jobAdvertisementService.passiveAdvertisement(advertisementId);
 	}
 	@PostMapping("/add")
-	public Result addAdvertisement(@RequestParam JobAdvertisement jobAdvertisement) {
+	public Result addAdvertisement(@RequestBody JobAdvertisement jobAdvertisement) {
 		return jobAdvertisementService.add(jobAdvertisement);
 	}
 	
